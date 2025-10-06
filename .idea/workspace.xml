@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PropertiesComponent">{}</component>
+  <component name="RunManager">
+    <configuration name="HelaPureApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="HelaPure" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.HelaPure.HelaPureApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+</project>
