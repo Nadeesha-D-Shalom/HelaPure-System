@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HelaPure.iml" filepath="$PROJECT_DIR$/.idea/HelaPure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/HelaPure-System.iml" filepath="$PROJECT_DIR$/.idea/HelaPure-System.iml" />
     </modules>
   </component>
 </project>
