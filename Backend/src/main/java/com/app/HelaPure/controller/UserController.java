@@ -2,7 +2,7 @@
 package com.app.HelaPure.controller;
 
 import com.app.HelaPure.model.User;
-import com.helapure.backend.repository.UserRepository;
+import com.app.HelaPure.repository.UserRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec909bc6-9643-4fdf-9f39-6977cd3f2de3" name="Changes" comment="add fils">
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/app/HelaPure/HelaPureApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/app/HelaPure/HelaPureApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/app/HelaPure/HelaPureApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/app/HelaPure/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/app/HelaPure/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.HelapureBackendApplication.executor": "Run",
     "git-widget-placeholder": "Backend-DNY25105588",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -68,10 +68,17 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.HelapureBackendApplication">
     <configuration name="HelaPureApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="HelaPure" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.HelaPure.HelaPureApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelapureBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="HelaPure" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.HelaPure.HelapureBackendApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -92,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759828118643</updated>
-      <workItem from="1759828119783" duration="2107000" />
+      <workItem from="1759828119783" duration="2446000" />
     </task>
     <task id="LOCAL-00001" summary="add fils">
       <option name="closed" value="true" />
@@ -102,7 +109,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759828716391</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add fils">
+      <option name="closed" value="true" />
+      <created>1759830246784</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759830246784</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
