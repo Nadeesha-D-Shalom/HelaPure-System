@@ -1,0 +1,19 @@
+.main-header {
+  background-color: var(--deep-green);
+  color: var(--light-cream);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.main-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.main-header nav a {
+  color: var(--light-cream);
+  margin-left: 1rem;
+  text-decoration: none;
+}
