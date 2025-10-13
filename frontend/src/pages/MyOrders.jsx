@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OrderTracker from '../components/OrderTracker';
 import { useOrders } from '../context/OrderContext';
+import '../styles/MyOrders.css';
 
 const MyOrders = () => {
   const navigate = useNavigate();
@@ -70,150 +71,103 @@ const MyOrders = () => {
   const statusCounts = getStatusCounts();
 
   return (
-    <>
+    <div className="my-orders-page">
       <Header />
-      <div style={{ padding: '2rem', backgroundColor: 'var(--light-cream)', minHeight: '80vh' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-            <h2 style={{ color: 'var(--deep-green)', margin: 0 }}>
-              My Orders
-            </h2>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <button
-                onClick={refreshOrders}
-                disabled={loading}
-                style={{
-                  background: 'var(--earthy-tan)',
-                  color: 'var(--dark-brown)',
-                  border: 'none',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '4px',
-                  cursor: loading ? 'not-allowed' : 'pointer',
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  opacity: loading ? 0.6 : 1
-                }}
+      <div className="orders-container">
+        <div className="orders-header">
+          <h1 className="orders-title">
+            <i className="fas fa-shopping-bag"></i>
+            My Orders
+          </h1>
+          <div className="orders-actions">
+            <button
+              onClick={refreshOrders}
+              disabled={loading}
+              className="orders-btn orders-btn-secondary"
+            >
+              <i className="fas fa-sync-alt"></i>
+              {loading ? 'Refreshing...' : 'Refresh Orders'}
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="orders-btn orders-btn-primary"
+            >
+              <i className="fas fa-shopping-cart"></i>
+              Continue Shopping
+            </button>
+          </div>
+        </div>
+
+        {/* Search and Filter */}
+        <div className="orders-search-filter">
+          <div className="orders-search-grid">
+            <div className="orders-search-group">
+              <label className="orders-search-label">
+                Search Orders
+              </label>
+              <input
+                type="text"
+                placeholder="Search by order ID or product name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="orders-search-input"
+              />
+            </div>
+            <div className="orders-filter-group">
+              <label className="orders-filter-label">
+                Filter by Status
+              </label>
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="orders-filter-select"
               >
-                {loading ? 'Refreshing...' : 'Refresh Orders'}
-              </button>
+                <option value="all">All Orders ({statusCounts.all})</option>
+                <option value="pending">Pending ({statusCounts.pending})</option>
+                <option value="confirmed">Confirmed ({statusCounts.confirmed})</option>
+                <option value="processing">Processing ({statusCounts.processing})</option>
+                <option value="shipped">Shipped ({statusCounts.shipped})</option>
+                <option value="delivered">Delivered ({statusCounts.delivered})</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Orders List */}
+        {filteredOrders.length === 0 ? (
+          <div className="orders-empty">
+            <div className="orders-empty-icon">
+              <i className="fas fa-shopping-bag"></i>
+            </div>
+            <h3 className="orders-empty-title">
+              {searchTerm || filterStatus !== 'all' ? 'No orders found' : 'No orders yet'}
+            </h3>
+            <p className="orders-empty-description">
+              {searchTerm || filterStatus !== 'all' 
+                ? 'Try adjusting your search or filter criteria.'
+                : 'Start shopping to see your orders here!'
+              }
+            </p>
+            {!searchTerm && filterStatus === 'all' && (
               <button
                 onClick={() => navigate('/')}
-                style={{
-                  background: 'var(--deep-green)',
-                  color: 'var(--light-cream)',
-                  border: 'none',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '1rem',
-                  fontWeight: 'bold'
-                }}
+                className="orders-empty-action"
               >
-                Continue Shopping
+                <i className="fas fa-shopping-cart"></i>
+                Start Shopping
               </button>
-            </div>
+            )}
           </div>
-
-          {/* Search and Filter */}
-          <div style={{
-            background: 'white',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            border: '1px solid var(--earthy-tan)',
-            marginBottom: '2rem'
-          }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '1rem', alignItems: 'end' }}>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)', fontWeight: 'bold' }}>
-                  Search Orders
-                </label>
-                <input
-                  type="text"
-                  placeholder="Search by order ID or product name..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid var(--earthy-tan)',
-                    borderRadius: '4px',
-                    fontSize: '1rem'
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)', fontWeight: 'bold' }}>
-                  Filter by Status
-                </label>
-                <select
-                  value={filterStatus}
-                  onChange={(e) => setFilterStatus(e.target.value)}
-                  style={{
-                    padding: '0.75rem',
-                    border: '1px solid var(--earthy-tan)',
-                    borderRadius: '4px',
-                    fontSize: '1rem',
-                    minWidth: '150px'
-                  }}
-                >
-                  <option value="all">All Orders ({statusCounts.all})</option>
-                  <option value="pending">Pending ({statusCounts.pending})</option>
-                  <option value="confirmed">Confirmed ({statusCounts.confirmed})</option>
-                  <option value="processing">Processing ({statusCounts.processing})</option>
-                  <option value="shipped">Shipped ({statusCounts.shipped})</option>
-                  <option value="delivered">Delivered ({statusCounts.delivered})</option>
-                </select>
-              </div>
-            </div>
+        ) : (
+          <div className="orders-list">
+            {filteredOrders.map(order => (
+              <OrderTracker key={order.id} order={order} />
+            ))}
           </div>
-
-          {/* Orders List */}
-          {filteredOrders.length === 0 ? (
-            <div style={{
-              background: 'white',
-              padding: '3rem',
-              borderRadius: '8px',
-              border: '1px solid var(--earthy-tan)',
-              textAlign: 'center'
-            }}>
-              <h3 style={{ color: 'var(--deep-green)', marginBottom: '1rem' }}>
-                {searchTerm || filterStatus !== 'all' ? 'No orders found' : 'No orders yet'}
-              </h3>
-              <p style={{ color: 'var(--dark-brown)', marginBottom: '2rem' }}>
-                {searchTerm || filterStatus !== 'all' 
-                  ? 'Try adjusting your search or filter criteria.'
-                  : 'Start shopping to see your orders here!'
-                }
-              </p>
-              {!searchTerm && filterStatus === 'all' && (
-                <button
-                  onClick={() => navigate('/')}
-                  style={{
-                    background: 'var(--deep-green)',
-                    color: 'var(--light-cream)',
-                    border: 'none',
-                    padding: '1rem 2rem',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '1rem',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  Start Shopping
-                </button>
-              )}
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {filteredOrders.map(order => (
-                <OrderTracker key={order.id} order={order} />
-              ))}
-            </div>
-          )}
-        </div>
+        )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

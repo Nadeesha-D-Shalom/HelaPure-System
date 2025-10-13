@@ -18,9 +18,17 @@ export const NotificationProvider = ({ children }) => {
   useEffect(() => {
     const savedNotifications = localStorage.getItem('helapure_notifications');
     if (savedNotifications) {
-      const parsed = JSON.parse(savedNotifications);
-      setNotifications(parsed);
-      setUnreadCount(parsed.filter(n => !n.read).length);
+      try {
+        const parsed = JSON.parse(savedNotifications);
+        setNotifications(parsed);
+        setUnreadCount(parsed.filter(n => !n.read).length);
+      } catch (error) {
+        console.error('Error parsing saved notifications:', error);
+        // Clear corrupted data and start with empty notifications
+        localStorage.removeItem('helapure_notifications');
+        setNotifications([]);
+        setUnreadCount(0);
+      }
     }
   }, []);
 
@@ -144,7 +152,7 @@ export const NotificationProvider = ({ children }) => {
     createNotification(
       'wishlist',
       'Price Drop Alert!',
-      `${productName} price dropped from $${oldPrice} to $${newPrice}`,
+      `${productName} price dropped from Rs. ${oldPrice} to Rs. ${newPrice}`,
       { productName, oldPrice, newPrice }
     );
   };

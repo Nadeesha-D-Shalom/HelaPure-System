@@ -61,12 +61,14 @@ const LoginModal = ({ isOpen, onClose }) => {
 
   // Redirect if already logged in
   useEffect(() => {
-    if (user && !loading) {
+    if (user && !loading && isOpen) {
       const from = location.state?.from?.pathname || getDefaultRoute(user.role);
-      navigate(from, { replace: true });
-      onClose();
+      onClose(); // Close modal first
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 100); // Small delay to prevent navigation throttling
     }
-  }, [user, loading, navigate, location, onClose]);
+  }, [user, loading, isOpen, navigate, location, onClose]);
 
   const getDefaultRoute = (role) => {
     switch (role) {
@@ -161,8 +163,10 @@ const LoginModal = ({ isOpen, onClose }) => {
       
       if (result.success) {
         const from = location.state?.from?.pathname || getDefaultRoute(result.user.role);
-        navigate(from, { replace: true });
-        onClose();
+        onClose(); // Close modal first
+        setTimeout(() => {
+          navigate(from, { replace: true });
+        }, 100); // Small delay to prevent navigation throttling
       } else {
         setLoginError(result.error);
       }

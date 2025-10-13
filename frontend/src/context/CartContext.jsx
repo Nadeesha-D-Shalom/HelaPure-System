@@ -17,7 +17,14 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const savedCart = localStorage.getItem('helapure_cart');
     if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
+      try {
+        setCartItems(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Error parsing saved cart:', error);
+        // Clear corrupted data and start with empty cart
+        localStorage.removeItem('helapure_cart');
+        setCartItems([]);
+      }
     }
   }, []);
 
@@ -27,17 +34,27 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (product, quantity = 1) => {
+    console.log('CartContext: addToCart called with:', product, quantity);
+    
+    if (!product) {
+      console.error('CartContext: Product is null or undefined');
+      return;
+    }
+    
     setCartItems(prev => {
+      console.log('CartContext: Current cart items:', prev);
       const existingItem = prev.find(item => item.id === product.id);
       
       if (existingItem) {
+        console.log('CartContext: Updating existing item');
         return prev.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        return [...prev, {
+        console.log('CartContext: Adding new item');
+        const newItem = {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -48,7 +65,9 @@ export const CartProvider = ({ children }) => {
           category: product.category,
           inStock: product.inStock,
           stockCount: product.stockCount
-        }];
+        };
+        console.log('CartContext: New item:', newItem);
+        return [...prev, newItem];
       }
     });
   };

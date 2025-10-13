@@ -73,12 +73,15 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: #ef4444;
+  background: linear-gradient(135deg, #10B981, #059669);
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .image-thumbnails {

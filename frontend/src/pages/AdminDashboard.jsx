@@ -6,6 +6,7 @@ import AdvancedButton from '../components/AdvancedButton';
 import Modal from '../components/Modal';
 import DataTable from '../components/DataTable';
 import UserManagement from '../components/UserManagement';
+import '../styles/AdminDashboard.css';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -167,39 +168,36 @@ const AdminDashboard = () => {
     { key: 'category', label: 'Category', searchable: true },
     { key: 'description', label: 'Description', searchable: true },
     { key: 'status', label: 'Status', render: (value) => (
-      <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(value)}`}>
+      <span className={`admin-status-badge ${value}`}>
         {value.charAt(0).toUpperCase() + value.slice(1)}
       </span>
     )},
     { key: 'submittedDate', label: 'Submitted' },
     { key: 'actions', label: 'Actions', render: (value, item) => (
       <div className="flex space-x-2">
-        <AdvancedButton
-          size="sm"
-          variant="outline"
+        <button
+          className="admin-btn admin-btn-outline admin-focus-ring"
           onClick={() => {
             setSelectedRequest(item);
             setShowRequestModal(true);
           }}
         >
           Review
-        </AdvancedButton>
+        </button>
         {item.status === 'pending' && (
           <>
-            <AdvancedButton
-              size="sm"
-              variant="success"
+            <button
+              className="admin-btn admin-btn-success admin-focus-ring"
               onClick={() => handleApproveRequest(item.id, 'Approved by admin')}
             >
               Approve
-            </AdvancedButton>
-            <AdvancedButton
-              size="sm"
-              variant="danger"
+            </button>
+            <button
+              className="admin-btn admin-btn-danger admin-focus-ring"
               onClick={() => handleRejectRequest(item.id, 'Does not meet requirements')}
             >
               Reject
-            </AdvancedButton>
+            </button>
           </>
         )}
       </div>
@@ -241,7 +239,7 @@ const AdminDashboard = () => {
     { key: 'total', label: 'Total', render: (value) => `$${value.toFixed(2)}` },
     { key: 'commission', label: 'Commission', render: (value) => `$${value.toFixed(2)}` },
     { key: 'status', label: 'Status', render: (value) => (
-      <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(value)}`}>
+      <span className={`admin-status-badge ${value}`}>
         {value.charAt(0).toUpperCase() + value.slice(1)}
       </span>
     )},
@@ -259,99 +257,91 @@ const AdminDashboard = () => {
   };
 
   const tabs = [
-    { id: 'requests', label: 'Product Requests', icon: '📝', count: stats.pendingRequests },
-    { id: 'sellers', label: 'Sellers', icon: '👥', count: stats.totalSellers },
-    { id: 'users', label: 'User Management', icon: '👤', count: 0 },
-    { id: 'orders', label: 'Orders', icon: '🛒', count: stats.totalOrders },
-    { id: 'analytics', label: 'Analytics', icon: '📊', count: 0 }
+    { id: 'requests', label: 'Product Requests', icon: 'fas fa-clipboard-list', count: stats.pendingRequests },
+    { id: 'sellers', label: 'Sellers', icon: 'fas fa-users', count: stats.totalSellers },
+    { id: 'users', label: 'User Management', icon: 'fas fa-user-cog', count: 0 },
+    { id: 'orders', label: 'Orders', icon: 'fas fa-shopping-cart', count: stats.totalOrders },
+    { id: 'analytics', label: 'Analytics', icon: 'fas fa-chart-bar', count: 0 }
   ];
 
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-light-cream">
-        <div className="container mx-auto px-4 py-8">
+      <div className="admin-dashboard">
           {/* Header */}
-          <div className="flex justify-between items-center mb-8">
+        <div className="admin-header">
+          <div className="admin-header-content">
             <div>
-              <h1 className="text-3xl font-bold text-deep-green">Admin Dashboard</h1>
-              <p className="text-gray-600 mt-2">Manage sellers, approve requests, and monitor platform activity</p>
+              <h1 className="admin-title">Admin Dashboard</h1>
+              <p className="admin-subtitle">Manage sellers, approve requests, and monitor platform activity</p>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600">Total Commission Earned</p>
-              <p className="text-2xl font-bold text-deep-green">${stats.totalCommission.toFixed(2)}</p>
+            <div className="admin-commission">
+              <p className="text-sm opacity-90 mb-1">Total Commission Earned</p>
+              <p className="text-3xl font-bold">${stats.totalCommission.toFixed(2)}</p>
+            </div>
             </div>
           </div>
 
+        {/* Main Content */}
+        <div className="admin-main-content">
+
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-yellow-100 rounded-full">
-                  <span className="text-2xl">📝</span>
+          <div className="admin-stats-grid">
+            <div className="admin-stat-card admin-hover-lift">
+              <div className="admin-stat-icon pending">
+                <i className="fas fa-clock"></i>
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Pending Requests</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.pendingRequests}</p>
-                </div>
+              <div>
+                <p className="admin-stat-number">{stats.pendingRequests}</p>
+                <p className="admin-stat-label">Pending Requests</p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-green-100 rounded-full">
-                  <span className="text-2xl">✅</span>
+            <div className="admin-stat-card admin-hover-lift">
+              <div className="admin-stat-icon approved">
+                <i className="fas fa-check-circle"></i>
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Approved Requests</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.approvedRequests}</p>
-                </div>
+              <div>
+                <p className="admin-stat-number">{stats.approvedRequests}</p>
+                <p className="admin-stat-label">Approved Requests</p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <span className="text-2xl">👥</span>
+            <div className="admin-stat-card admin-hover-lift">
+              <div className="admin-stat-icon sellers">
+                <i className="fas fa-users"></i>
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Active Sellers</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.activeSellers}</p>
-                </div>
+              <div>
+                <p className="admin-stat-number">{stats.activeSellers}</p>
+                <p className="admin-stat-label">Active Sellers</p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-purple-100 rounded-full">
-                  <span className="text-2xl">🛒</span>
+            <div className="admin-stat-card admin-hover-lift">
+              <div className="admin-stat-icon orders">
+                <i className="fas fa-shopping-cart"></i>
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Total Orders</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalOrders}</p>
-                </div>
+              <div>
+                <p className="admin-stat-number">{stats.totalOrders}</p>
+                <p className="admin-stat-label">Total Orders</p>
               </div>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm">
+          <div className="admin-tabs">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center px-4 py-2 rounded-md transition-all relative ${
-                  activeTab === tab.id
-                    ? 'bg-deep-green text-white shadow-md'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`admin-tab ${activeTab === tab.id ? 'active' : ''}`}
               >
-                <span className="mr-2">{tab.icon}</span>
+                <span className="admin-tab-icon">
+                  <i className={tab.icon}></i>
+                </span>
                 {tab.label}
                 {tab.count > 0 && (
-                  <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                    activeTab === tab.id ? 'bg-white text-deep-green' : 'bg-deep-green text-white'
-                  }`}>
+                  <span className="admin-tab-badge">
                     {tab.count}
                   </span>
                 )}
@@ -360,16 +350,16 @@ const AdminDashboard = () => {
           </div>
 
           {/* Content */}
-          <div className="bg-white rounded-lg shadow-md">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900">
+          <div className="admin-content admin-hover-lift">
+            <div className="admin-content-header">
+              <h2 className="admin-content-title">
                 {activeTab === 'requests' && 'Product Approval Requests'}
                 {activeTab === 'sellers' && 'Seller Management'}
                 {activeTab === 'users' && 'User Management'}
                 {activeTab === 'orders' && 'Order Management'}
                 {activeTab === 'analytics' && 'Platform Analytics'}
               </h2>
-              <p className="text-gray-600 mt-1">
+              <p className="admin-content-subtitle">
                 {activeTab === 'requests' && 'Review and approve product listing requests'}
                 {activeTab === 'sellers' && 'Manage seller accounts and status'}
                 {activeTab === 'users' && 'Manage user accounts and permissions'}
@@ -379,23 +369,21 @@ const AdminDashboard = () => {
             </div>
             
             {activeTab === 'analytics' ? (
-              <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-gradient-primary text-white p-6 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-2">Revenue Overview</h3>
-                    <p className="text-3xl font-bold">${stats.totalCommission.toFixed(2)}</p>
-                    <p className="text-sm opacity-90">Total Commission</p>
+              <div className="admin-analytics-grid">
+                <div className="admin-analytics-card revenue admin-hover-lift">
+                  <h3 className="admin-analytics-title">Revenue Overview</h3>
+                  <p className="admin-analytics-value">${stats.totalCommission.toFixed(2)}</p>
+                  <p className="admin-analytics-label">Total Commission</p>
                   </div>
-                  <div className="bg-gradient-secondary text-white p-6 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-2">Platform Growth</h3>
-                    <p className="text-3xl font-bold">{stats.activeSellers}</p>
-                    <p className="text-sm opacity-90">Active Sellers</p>
+                <div className="admin-analytics-card growth admin-hover-lift">
+                  <h3 className="admin-analytics-title">Platform Growth</h3>
+                  <p className="admin-analytics-value">{stats.activeSellers}</p>
+                  <p className="admin-analytics-label">Active Sellers</p>
                   </div>
-                  <div className="bg-gradient-light text-deep-green p-6 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-2">Order Volume</h3>
-                    <p className="text-3xl font-bold">{stats.totalOrders}</p>
-                    <p className="text-sm opacity-90">Total Orders</p>
-                  </div>
+                <div className="admin-analytics-card orders admin-hover-lift">
+                  <h3 className="admin-analytics-title">Order Volume</h3>
+                  <p className="admin-analytics-value">{stats.totalOrders}</p>
+                  <p className="admin-analytics-label">Total Orders</p>
                 </div>
               </div>
             ) : activeTab === 'users' ? (
@@ -403,22 +391,183 @@ const AdminDashboard = () => {
                 <UserManagement />
               </div>
             ) : (
-              <DataTable
-                data={
-                  activeTab === 'requests' ? requests :
-                  activeTab === 'sellers' ? sellers :
-                  orders
-                }
-                columns={
-                  activeTab === 'requests' ? requestColumns :
-                  activeTab === 'sellers' ? sellerColumns :
-                  orderColumns
-                }
-                searchable={true}
-                sortable={true}
-                pagination={true}
-                pageSize={10}
-              />
+              <div className="admin-table-container">
+                <div className="admin-table-header">
+                  <h3 className="admin-table-title">
+                    {activeTab === 'requests' && (
+                      <>
+                        <i className="fas fa-clipboard-list"></i>
+                        Product Approval Requests
+                      </>
+                    )}
+                    {activeTab === 'sellers' && (
+                      <>
+                        <i className="fas fa-users"></i>
+                        Seller Management
+                      </>
+                    )}
+                    {activeTab === 'orders' && (
+                      <>
+                        <i className="fas fa-shopping-cart"></i>
+                        Order Management
+                      </>
+                    )}
+                  </h3>
+                  <p className="admin-table-subtitle">
+                    {activeTab === 'requests' && 'Review and manage product listing requests from sellers'}
+                    {activeTab === 'sellers' && 'Monitor and manage seller accounts and their performance'}
+                    {activeTab === 'orders' && 'Track all orders and commission details across the platform'}
+                  </p>
+                </div>
+                
+                <div className="admin-table-actions">
+                  <div className="admin-table-search">
+                    <input 
+                      type="text" 
+                      placeholder="Search..." 
+                    />
+                  </div>
+                  <div className="admin-table-filters">
+                    <button className="admin-filter-btn active">All</button>
+                    <button className="admin-filter-btn">Pending</button>
+                    <button className="admin-filter-btn">Approved</button>
+                    <button className="admin-filter-btn">Rejected</button>
+                  </div>
+                </div>
+
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      {activeTab === 'requests' && requestColumns.map(col => (
+                        <th key={col.key} className={col.searchable ? 'sortable' : ''}>
+                          {col.label}
+                        </th>
+                      ))}
+                      {activeTab === 'sellers' && sellerColumns.map(col => (
+                        <th key={col.key} className={col.searchable ? 'sortable' : ''}>
+                          {col.label}
+                        </th>
+                      ))}
+                      {activeTab === 'orders' && orderColumns.map(col => (
+                        <th key={col.key} className={col.searchable ? 'sortable' : ''}>
+                          {col.label}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {activeTab === 'requests' && requests.map((item, index) => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.sellerName}</td>
+                        <td>{item.productName}</td>
+                        <td>{item.category}</td>
+                        <td>{item.description}</td>
+                        <td>
+                          <span className={`admin-status-badge ${item.status}`}>
+                            {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                          </span>
+                        </td>
+                        <td>{item.submittedDate}</td>
+                        <td>
+                          <div className="admin-table-actions-cell">
+                            <button
+                              className="admin-table-btn primary"
+                              onClick={() => {
+                                setSelectedRequest(item);
+                                setShowRequestModal(true);
+                              }}
+                            >
+                              <i className="fas fa-eye"></i>
+                              Review
+                            </button>
+                            {item.status === 'pending' && (
+                              <>
+                                <button
+                                  className="admin-table-btn success"
+                                  onClick={() => handleApproveRequest(item.id, 'Approved by admin')}
+                                >
+                                  <i className="fas fa-check"></i>
+                                  Approve
+                                </button>
+                                <button
+                                  className="admin-table-btn danger"
+                                  onClick={() => handleRejectRequest(item.id, 'Does not meet requirements')}
+                                >
+                                  <i className="fas fa-times"></i>
+                                  Reject
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                    {activeTab === 'sellers' && sellers.map((item, index) => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>{item.email}</td>
+                        <td>{item.phone}</td>
+                        <td>
+                          <select
+                            value={item.status}
+                            onChange={(e) => updateSellerStatus(item.id, e.target.value)}
+                            className={`admin-status-badge ${item.status}`}
+                            style={{ border: 'none', background: 'transparent', color: 'inherit' }}
+                          >
+                            <option value="active">Active</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="inactive">Inactive</option>
+                          </select>
+                        </td>
+                        <td>{item.joinDate}</td>
+                        <td>{item.totalProducts}</td>
+                        <td>${item.totalSales.toFixed(2)}</td>
+                        <td>
+                          <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <span style={{ color: '#F59E0B' }}>★</span>
+                            <span style={{ marginLeft: '0.25rem' }}>{item.rating}</span>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                    {activeTab === 'orders' && orders.map((item, index) => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.customer}</td>
+                        <td>{item.seller}</td>
+                        <td>{item.product}</td>
+                        <td>{item.quantity}</td>
+                        <td>${item.total.toFixed(2)}</td>
+                        <td>${item.commission.toFixed(2)}</td>
+                        <td>
+                          <span className={`admin-status-badge ${item.status}`}>
+                            {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                          </span>
+                        </td>
+                        <td>{item.date}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <div className="admin-table-footer">
+                  <div className="admin-table-info">
+                    Showing {activeTab === 'requests' ? requests.length : activeTab === 'sellers' ? sellers.length : orders.length} results
+                  </div>
+                  <div className="admin-table-pagination">
+                    <button className="admin-pagination-btn" disabled>
+                      <i className="fas fa-chevron-left"></i>
+                    </button>
+                    <button className="admin-pagination-btn active">1</button>
+                    <button className="admin-pagination-btn">2</button>
+                    <button className="admin-pagination-btn">3</button>
+                    <button className="admin-pagination-btn">
+                      <i className="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
@@ -450,7 +599,7 @@ const AdminDashboard = () => {
                   <p><span className="font-medium">Email:</span> {selectedRequest.sellerEmail}</p>
                   <p><span className="font-medium">Submitted:</span> {selectedRequest.submittedDate}</p>
                   <p><span className="font-medium">Status:</span> 
-                    <span className={`ml-2 px-2 py-1 rounded-full text-xs ${getStatusColor(selectedRequest.status)}`}>
+                    <span className={`ml-2 admin-status-badge ${selectedRequest.status}`}>
                       {selectedRequest.status.charAt(0).toUpperCase() + selectedRequest.status.slice(1)}
                     </span>
                   </p>
@@ -484,26 +633,29 @@ const AdminDashboard = () => {
 
             {/* Actions */}
             <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-              <AdvancedButton
-                variant="outline"
+              <button
+                className="admin-btn admin-btn-outline admin-focus-ring"
                 onClick={() => setShowRequestModal(false)}
               >
+                <i className="fas fa-times"></i>
                 Close
-              </AdvancedButton>
+              </button>
               {selectedRequest.status === 'pending' && (
                 <>
-                  <AdvancedButton
-                    variant="success"
+                  <button
+                    className="admin-btn admin-btn-success admin-focus-ring"
                     onClick={() => handleApproveRequest(selectedRequest.id, selectedRequest.adminNotes)}
                   >
+                    <i className="fas fa-check"></i>
                     Approve Request
-                  </AdvancedButton>
-                  <AdvancedButton
-                    variant="danger"
+                  </button>
+                  <button
+                    className="admin-btn admin-btn-danger admin-focus-ring"
                     onClick={() => handleRejectRequest(selectedRequest.id, selectedRequest.rejectionReason)}
                   >
+                    <i className="fas fa-times"></i>
                     Reject Request
-                  </AdvancedButton>
+                  </button>
                 </>
               )}
             </div>

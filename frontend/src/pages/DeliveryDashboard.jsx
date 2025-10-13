@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import AdvancedButton from '../components/AdvancedButton';
 import Modal from '../components/Modal';
 import DataTable from '../components/DataTable';
+import '../styles/DeliveryDashboard.css';
 
 const DeliveryDashboard = () => {
   const navigate = useNavigate();
@@ -132,8 +133,9 @@ const DeliveryDashboard = () => {
     { key: 'address', label: 'Address', searchable: true },
     { key: 'phone', label: 'Phone', searchable: true },
     { key: 'status', label: 'Status', render: (value) => (
-      <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(value)}`}>
-        {getStatusIcon(value)} {value.replace('_', ' ').toUpperCase()}
+      <span className={`delivery-status-badge ${value}`}>
+        <i className={getStatusIcon(value)}></i>
+        {value.replace('_', ' ').toUpperCase()}
       </span>
     )},
     { key: 'estimatedDelivery', label: 'Est. Delivery' },
@@ -141,36 +143,36 @@ const DeliveryDashboard = () => {
     { key: 'actions', label: 'Actions', render: (value, item) => (
       <div className="flex space-x-2">
         {item.status === 'assigned' && (
-          <AdvancedButton
-            size="sm"
-            variant="primary"
+          <button
+            className="delivery-btn delivery-btn-primary delivery-btn-sm"
             onClick={() => startDelivery(item.id)}
           >
+            <i className="fas fa-play"></i>
             Start
-          </AdvancedButton>
+          </button>
         )}
         {item.status === 'in_transit' && (
-          <AdvancedButton
-            size="sm"
-            variant="success"
+          <button
+            className="delivery-btn delivery-btn-success delivery-btn-sm"
             onClick={() => {
               setSelectedOrder(item);
               setShowDeliveryModal(true);
             }}
           >
+            <i className="fas fa-check"></i>
             Complete
-          </AdvancedButton>
+          </button>
         )}
-        <AdvancedButton
-          size="sm"
-          variant="outline"
+        <button
+          className="delivery-btn delivery-btn-outline delivery-btn-sm"
           onClick={() => {
             setSelectedOrder(item);
             setShowDeliveryModal(true);
           }}
         >
+          <i className="fas fa-eye"></i>
           View
-        </AdvancedButton>
+        </button>
       </div>
     )}
   ];
@@ -194,10 +196,10 @@ const DeliveryDashboard = () => {
   };
 
   const tabs = [
-    { id: 'assigned', label: 'Assigned', icon: '📋', count: stats.totalAssigned },
-    { id: 'in_transit', label: 'In Transit', icon: '🚚', count: stats.inTransit },
-    { id: 'completed', label: 'Completed', icon: '✅', count: stats.totalCompleted },
-    { id: 'history', label: 'History', icon: '📊', count: stats.totalCompleted }
+    { id: 'assigned', label: 'Assigned', icon: 'fas fa-clipboard-list', count: stats.totalAssigned },
+    { id: 'in_transit', label: 'In Transit', icon: 'fas fa-truck', count: stats.inTransit },
+    { id: 'completed', label: 'Completed', icon: 'fas fa-check-circle', count: stats.totalCompleted },
+    { id: 'history', label: 'History', icon: 'fas fa-chart-bar', count: stats.totalCompleted }
   ];
 
   const filteredDeliveries = deliveries.filter(delivery => {
@@ -218,89 +220,81 @@ const DeliveryDashboard = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-light-cream">
-        <div className="container mx-auto px-4 py-8">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
+      <div className="delivery-dashboard">
+        {/* Header */}
+        <div className="delivery-header">
+          <div className="delivery-header-content">
             <div>
-              <h1 className="text-3xl font-bold text-deep-green">Delivery Dashboard</h1>
-              <p className="text-gray-600 mt-2">Manage your delivery assignments and track progress</p>
+              <h1 className="delivery-title">Delivery Dashboard</h1>
+              <p className="delivery-subtitle">Manage your delivery assignments and track progress</p>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600">Today's Earnings</p>
-              <p className="text-2xl font-bold text-deep-green">${stats.totalEarnings.toFixed(2)}</p>
+            <div className="delivery-earnings">
+              <p className="text-sm opacity-90 mb-1">Today's Earnings</p>
+              <p className="text-3xl font-bold">${stats.totalEarnings.toFixed(2)}</p>
             </div>
           </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="delivery-main-content">
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <span className="text-2xl">📋</span>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Assigned</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalAssigned}</p>
-                </div>
+          <div className="delivery-stats-grid">
+            <div className="delivery-stat-card">
+              <div className="delivery-stat-icon assigned">
+                <i className="fas fa-clipboard-list"></i>
+              </div>
+              <div>
+                <p className="delivery-stat-number">{stats.totalAssigned}</p>
+                <p className="delivery-stat-label">Assigned</p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-yellow-100 rounded-full">
-                  <span className="text-2xl">🚚</span>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">In Transit</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.inTransit}</p>
-                </div>
+            <div className="delivery-stat-card">
+              <div className="delivery-stat-icon in-transit">
+                <i className="fas fa-truck"></i>
+              </div>
+              <div>
+                <p className="delivery-stat-number">{stats.inTransit}</p>
+                <p className="delivery-stat-label">In Transit</p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-green-100 rounded-full">
-                  <span className="text-2xl">✅</span>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Completed Today</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.completedToday}</p>
-                </div>
+            <div className="delivery-stat-card">
+              <div className="delivery-stat-icon completed">
+                <i className="fas fa-check-circle"></i>
+              </div>
+              <div>
+                <p className="delivery-stat-number">{stats.completedToday}</p>
+                <p className="delivery-stat-label">Completed Today</p>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center">
-                <div className="p-3 bg-purple-100 rounded-full">
-                  <span className="text-2xl">💰</span>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm text-gray-600">Total Completed</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalCompleted}</p>
-                </div>
+            <div className="delivery-stat-card">
+              <div className="delivery-stat-icon earnings">
+                <i className="fas fa-dollar-sign"></i>
+              </div>
+              <div>
+                <p className="delivery-stat-number">{stats.totalCompleted}</p>
+                <p className="delivery-stat-label">Total Completed</p>
               </div>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm">
+          <div className="delivery-tabs">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center px-4 py-2 rounded-md transition-all relative ${
-                  activeTab === tab.id
-                    ? 'bg-deep-green text-white shadow-md'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`delivery-tab ${activeTab === tab.id ? 'active' : ''}`}
               >
-                <span className="mr-2">{tab.icon}</span>
+                <span className="delivery-tab-icon">
+                  <i className={tab.icon}></i>
+                </span>
                 {tab.label}
                 {tab.count > 0 && (
-                  <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                    activeTab === tab.id ? 'bg-white text-deep-green' : 'bg-deep-green text-white'
-                  }`}>
+                  <span className="delivery-tab-badge">
                     {tab.count}
                   </span>
                 )}
@@ -309,15 +303,35 @@ const DeliveryDashboard = () => {
           </div>
 
           {/* Content */}
-          <div className="bg-white rounded-lg shadow-md">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900">
-                {activeTab === 'assigned' && 'Assigned Deliveries'}
-                {activeTab === 'in_transit' && 'In Transit Deliveries'}
-                {activeTab === 'completed' && 'Completed Deliveries'}
-                {activeTab === 'history' && 'Delivery History'}
+          <div className="delivery-content">
+            <div className="delivery-content-header">
+              <h2 className="delivery-content-title">
+                {activeTab === 'assigned' && (
+                  <>
+                    <i className="fas fa-clipboard-list"></i>
+                    Assigned Deliveries
+                  </>
+                )}
+                {activeTab === 'in_transit' && (
+                  <>
+                    <i className="fas fa-truck"></i>
+                    In Transit Deliveries
+                  </>
+                )}
+                {activeTab === 'completed' && (
+                  <>
+                    <i className="fas fa-check-circle"></i>
+                    Completed Deliveries
+                  </>
+                )}
+                {activeTab === 'history' && (
+                  <>
+                    <i className="fas fa-chart-bar"></i>
+                    Delivery History
+                  </>
+                )}
               </h2>
-              <p className="text-gray-600 mt-1">
+              <p className="delivery-content-subtitle">
                 {activeTab === 'assigned' && 'Deliveries waiting to be started'}
                 {activeTab === 'in_transit' && 'Deliveries currently in progress'}
                 {activeTab === 'completed' && 'Recently completed deliveries'}
@@ -340,15 +354,18 @@ const DeliveryDashboard = () => {
       <Modal
         isOpen={showDeliveryModal}
         onClose={() => setShowDeliveryModal(false)}
-        title={selectedOrder ? `Delivery Details - ${selectedOrder.id}` : 'Delivery Details'}
+        title={selectedOrder ? 'Delivery Details - ' + selectedOrder.id : 'Delivery Details'}
         size="lg"
       >
         {selectedOrder && (
-          <div className="space-y-6">
+          <div className="delivery-modal-body">
             {/* Order Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Information</h3>
+                <h3 className="delivery-modal-title">
+                  <i className="fas fa-info-circle"></i>
+                  Order Information
+                </h3>
                 <div className="space-y-2">
                   <p><span className="font-medium">Order ID:</span> {selectedOrder.orderId}</p>
                   <p><span className="font-medium">Customer:</span> {selectedOrder.customer}</p>
@@ -357,12 +374,16 @@ const DeliveryDashboard = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Address</h3>
+                <h3 className="delivery-modal-title">
+                  <i className="fas fa-map-marker-alt"></i>
+                  Delivery Address
+                </h3>
                 <p className="text-gray-700">{selectedOrder.address}</p>
                 {selectedOrder.specialInstructions && (
-                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-                    <p className="text-sm text-yellow-800">
-                      <span className="font-medium">Special Instructions:</span> {selectedOrder.specialInstructions}
+                  <div className="delivery-special-instructions">
+                    <p>
+                      <span className="delivery-special-label">Special Instructions:</span>
+                      {selectedOrder.specialInstructions}
                     </p>
                   </div>
                 )}
@@ -371,44 +392,49 @@ const DeliveryDashboard = () => {
 
             {/* Items */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Items to Deliver</h3>
-              <div className="space-y-2">
+              <h3 className="delivery-modal-title">
+                <i className="fas fa-box"></i>
+                Items to Deliver
+              </h3>
+              <div className="delivery-items-list">
                 {selectedOrder.items.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-md">
-                    <span>{item.quantity}x {item.name}</span>
-                    <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
+                  <div key={index} className="delivery-item">
+                    <span className="delivery-item-name">{item.quantity}x {item.name}</span>
+                    <span className="delivery-item-price">Rs. {(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Delivery Notes */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Delivery Notes</label>
+            <div className="delivery-form-group">
+              <label className="delivery-form-label">Delivery Notes</label>
               <textarea
                 value={selectedOrder.deliveryNotes}
                 onChange={(e) => setSelectedOrder({...selectedOrder, deliveryNotes: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-deep-green"
+                className="delivery-form-textarea"
                 rows="3"
                 placeholder="Add any notes about the delivery..."
               />
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-              <AdvancedButton
-                variant="outline"
+            <div className="delivery-modal-footer">
+              <button
+                className="delivery-btn delivery-btn-outline"
                 onClick={() => setShowDeliveryModal(false)}
               >
+                <i className="fas fa-times"></i>
                 Close
-              </AdvancedButton>
+              </button>
               {selectedOrder.status === 'in_transit' && (
-                <AdvancedButton
-                  variant="success"
+                <button
+                  className="delivery-btn delivery-btn-success"
                   onClick={handleCompleteDelivery}
                 >
+                  <i className="fas fa-check"></i>
                   Mark as Delivered
-                </AdvancedButton>
+                </button>
               )}
             </div>
           </div>

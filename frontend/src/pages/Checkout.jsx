@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useOrders } from '../context/OrderContext';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const { addOrder } = useOrders();
   const { user } = useAuth();
+  const { cartItems, clearCart } = useCart();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     // Shipping Information
@@ -23,23 +25,19 @@ const Checkout = () => {
     country: 'Sri Lanka',
     
     // Payment Information
-    paymentMethod: 'card', // card, mobile, bank, cod
+    paymentMethod: 'card', // card, cod
     cardNumber: '',
     expiryDate: '',
     cvv: '',
-    cardName: '',
-    mobileProvider: 'dialog', // dialog, mobitel, airtel, hutch
-    mobileNumber: '',
-    bankName: '',
-    accountNumber: '',
-    accountHolderName: '',
-    
-    // Order Summary
-    items: [
-      { id: 1, name: 'Organic Honey', price: 25, quantity: 2 },
-      { id: 2, name: 'Natural Coconut Oil', price: 15, quantity: 1 }
-    ]
+    cardName: ''
   });
+
+  // Redirect to cart if no items
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate('/cart');
+    }
+  }, [cartItems, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +48,11 @@ const Checkout = () => {
   };
 
   const getTotalPrice = () => {
-    return formData.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  const getTotalItems = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
   const getShippingFee = () => {
@@ -81,7 +83,9 @@ const Checkout = () => {
               maxWidth: '500px',
               margin: '0 auto'
             }}>
-              <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>🔒</div>
+              <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>
+                <i className="fas fa-lock"></i>
+              </div>
               <h2 style={{ color: 'var(--dark-brown)', marginBottom: '1rem', fontSize: '2rem' }}>
                 Login Required
               </h2>
@@ -106,7 +110,7 @@ const Checkout = () => {
                   Login
                 </button>
                 <button
-                  onClick={() => navigate('/register')}
+                  onClick={() => navigate('/login')}
                   style={{
                     padding: '0.75rem 2rem',
                     borderRadius: '8px',
@@ -150,9 +154,9 @@ const Checkout = () => {
     return 'ORD-' + Date.now().toString().slice(-6);
   };
 
-  const generateTrackingNumber = () => {
-    return 'TRK' + Math.random().toString(36).substr(2, 9).toUpperCase();
-  };
+  // const generateTrackingNumber = () => {
+  //   return 'TRK' + Math.random().toString(36).substr(2, 9).toUpperCase();
+  // };
 
   const handleSubmitOrder = () => {
     // Create order object
@@ -164,16 +168,14 @@ const Checkout = () => {
       paymentDetails: {
         method: formData.paymentMethod,
         cardNumber: formData.paymentMethod === 'card' ? formData.cardNumber : null,
-        mobileProvider: formData.paymentMethod === 'mobile' ? formData.mobileProvider : null,
-        mobileNumber: formData.paymentMethod === 'mobile' ? formData.mobileNumber : null,
-        bankName: formData.paymentMethod === 'bank' ? formData.bankName : null,
-        accountNumber: formData.paymentMethod === 'bank' ? formData.accountNumber : null,
-        accountHolderName: formData.paymentMethod === 'bank' ? formData.accountHolderName : null
+        cardName: formData.paymentMethod === 'card' ? formData.cardName : null,
+        expiryDate: formData.paymentMethod === 'card' ? formData.expiryDate : null,
+        cvv: formData.paymentMethod === 'card' ? formData.cvv : null
       },
       shippingAddress: `${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}, ${formData.country}`,
       estimatedDelivery: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
       trackingNumber: null, // Will be generated when order is confirmed
-      items: formData.items,
+      items: cartItems,
       fees: {
         subtotal: getTotalPrice(),
         shipping: getShippingFee(),
@@ -191,17 +193,16 @@ const Checkout = () => {
     // Add order using context
     const newOrder = addOrder(order);
 
-    console.log('Order submitted:', newOrder);
+    // Clear cart after successful order
+    clearCart();
+
+    // Order submitted successfully
     
     // Show different messages based on payment method
     let successMessage = `Order placed successfully! Your order ID is ${newOrder.id}.`;
     
     if (formData.paymentMethod === 'cod') {
       successMessage += ` You will pay Rs. ${getFinalTotal().toFixed(2)} when your order is delivered.`;
-    } else if (formData.paymentMethod === 'mobile') {
-      successMessage += ` You will receive a payment request on your mobile device shortly.`;
-    } else if (formData.paymentMethod === 'bank') {
-      successMessage += ` Please complete the bank transfer using the provided details.`;
     } else {
       successMessage += ` Your payment has been processed successfully.`;
     }
@@ -402,7 +403,7 @@ const Checkout = () => {
       {/* Payment Method Selection */}
       <div style={{ marginBottom: '2rem' }}>
         <h4 style={{ color: 'var(--dark-brown)', marginBottom: '1rem', fontSize: '1.1rem' }}>Choose Payment Method:</h4>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
           
           {/* Credit/Debit Card */}
           <div 
@@ -417,49 +418,12 @@ const Checkout = () => {
             onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'card' }))}
           >
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>💳</span>
+              <i className="fas fa-credit-card" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}></i>
               <span style={{ fontWeight: '600', color: 'var(--dark-brown)' }}>Credit/Debit Card</span>
             </div>
             <p style={{ fontSize: '0.9rem', color: '#666', margin: 0 }}>Visa, Mastercard, American Express</p>
           </div>
 
-          {/* Mobile Payment */}
-          <div 
-            style={{
-              border: formData.paymentMethod === 'mobile' ? '2px solid var(--deep-green)' : '1px solid var(--earthy-tan)',
-              borderRadius: '8px',
-              padding: '1rem',
-              cursor: 'pointer',
-              backgroundColor: formData.paymentMethod === 'mobile' ? '#f0f9f0' : 'white',
-              transition: 'all 0.3s ease'
-            }}
-            onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'mobile' }))}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>📱</span>
-              <span style={{ fontWeight: '600', color: 'var(--dark-brown)' }}>Mobile Payment</span>
-            </div>
-            <p style={{ fontSize: '0.9rem', color: '#666', margin: 0 }}>Dialog, Mobitel, Airtel, Hutch</p>
-          </div>
-
-          {/* Bank Transfer */}
-          <div 
-            style={{
-              border: formData.paymentMethod === 'bank' ? '2px solid var(--deep-green)' : '1px solid var(--earthy-tan)',
-              borderRadius: '8px',
-              padding: '1rem',
-              cursor: 'pointer',
-              backgroundColor: formData.paymentMethod === 'bank' ? '#f0f9f0' : 'white',
-              transition: 'all 0.3s ease'
-            }}
-            onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'bank' }))}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>🏦</span>
-              <span style={{ fontWeight: '600', color: 'var(--dark-brown)' }}>Bank Transfer</span>
-            </div>
-            <p style={{ fontSize: '0.9rem', color: '#666', margin: 0 }}>Direct bank transfer</p>
-          </div>
 
           {/* Cash on Delivery */}
           <div 
@@ -474,7 +438,7 @@ const Checkout = () => {
             onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'cod' }))}
           >
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>💰</span>
+              <i className="fas fa-money-bill-wave" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}></i>
               <span style={{ fontWeight: '600', color: 'var(--dark-brown)' }}>Cash on Delivery</span>
             </div>
             <p style={{ fontSize: '0.9rem', color: '#666', margin: 0 }}>Pay when you receive</p>
@@ -562,145 +526,6 @@ const Checkout = () => {
         </div>
       )}
 
-      {formData.paymentMethod === 'mobile' && (
-        <div>
-          <h4 style={{ color: 'var(--dark-brown)', marginBottom: '1rem' }}>Mobile Payment Details</h4>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)' }}>Mobile Provider *</label>
-              <select
-                name="mobileProvider"
-                value={formData.mobileProvider}
-                onChange={handleInputChange}
-                required
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  border: '1px solid var(--earthy-tan)',
-                  borderRadius: '4px',
-                  fontSize: '1rem'
-                }}
-              >
-                <option value="dialog">Dialog</option>
-                <option value="mobitel">Mobitel</option>
-                <option value="airtel">Airtel</option>
-                <option value="hutch">Hutch</option>
-              </select>
-            </div>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)' }}>Mobile Number *</label>
-              <input
-                type="tel"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleInputChange}
-                placeholder="07XXXXXXXX"
-                required
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  border: '1px solid var(--earthy-tan)',
-                  borderRadius: '4px',
-                  fontSize: '1rem'
-                }}
-              />
-            </div>
-          </div>
-          <div style={{ 
-            background: '#f8f9fa', 
-            padding: '1rem', 
-            borderRadius: '4px', 
-            border: '1px solid #e9ecef' 
-          }}>
-            <p style={{ margin: 0, fontSize: '0.9rem', color: '#666' }}>
-              <strong>Instructions:</strong> You will receive a payment request on your mobile device. 
-              Please follow the prompts to complete the payment.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {formData.paymentMethod === 'bank' && (
-        <div>
-          <h4 style={{ color: 'var(--dark-brown)', marginBottom: '1rem' }}>Bank Transfer Details</h4>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)' }}>Bank Name *</label>
-            <select
-              name="bankName"
-              value={formData.bankName}
-              onChange={handleInputChange}
-              required
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                border: '1px solid var(--earthy-tan)',
-                borderRadius: '4px',
-                fontSize: '1rem'
-              }}
-            >
-              <option value="">Select Bank</option>
-              <option value="peoples-bank">People's Bank</option>
-              <option value="commercial-bank">Commercial Bank</option>
-              <option value="sampath-bank">Sampath Bank</option>
-              <option value="hatton-national-bank">Hatton National Bank</option>
-              <option value="ndb-bank">NDB Bank</option>
-              <option value="sri-lanka-savings-bank">Sri Lanka Savings Bank</option>
-            </select>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)' }}>Account Number *</label>
-              <input
-                type="text"
-                name="accountNumber"
-                value={formData.accountNumber}
-                onChange={handleInputChange}
-                placeholder="Enter account number"
-                required
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  border: '1px solid var(--earthy-tan)',
-                  borderRadius: '4px',
-                  fontSize: '1rem'
-                }}
-              />
-            </div>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--dark-brown)' }}>Account Holder Name *</label>
-              <input
-                type="text"
-                name="accountHolderName"
-                value={formData.accountHolderName}
-                onChange={handleInputChange}
-                placeholder="Enter account holder name"
-                required
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  border: '1px solid var(--earthy-tan)',
-                  borderRadius: '4px',
-                  fontSize: '1rem'
-                }}
-              />
-            </div>
-          </div>
-          <div style={{ 
-            background: '#f8f9fa', 
-            padding: '1rem', 
-            borderRadius: '4px', 
-            border: '1px solid #e9ecef' 
-          }}>
-            <p style={{ margin: 0, fontSize: '0.9rem', color: '#666' }}>
-              <strong>Bank Details:</strong><br/>
-              Account Name: HelaPure (Pvt) Ltd<br/>
-              Account Number: 1234567890<br/>
-              Bank: People's Bank<br/>
-              Branch: Colombo 03
-            </p>
-          </div>
-        </div>
-      )}
 
       {formData.paymentMethod === 'cod' && (
         <div>
@@ -750,31 +575,17 @@ const Checkout = () => {
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
           <span style={{ fontSize: '1.2rem', marginRight: '0.5rem' }}>
             {formData.paymentMethod === 'card' && '💳'}
-            {formData.paymentMethod === 'mobile' && '📱'}
-            {formData.paymentMethod === 'bank' && '🏦'}
             {formData.paymentMethod === 'cod' && '💰'}
           </span>
           <span style={{ fontWeight: '600', color: 'var(--dark-brown)' }}>
             {formData.paymentMethod === 'card' && 'Credit/Debit Card'}
-            {formData.paymentMethod === 'mobile' && 'Mobile Payment'}
-            {formData.paymentMethod === 'bank' && 'Bank Transfer'}
             {formData.paymentMethod === 'cod' && 'Cash on Delivery'}
           </span>
         </div>
-        {formData.paymentMethod === 'mobile' && formData.mobileProvider && (
-          <p style={{ margin: 0, fontSize: '0.9rem', color: '#666' }}>
-            {formData.mobileProvider.charAt(0).toUpperCase() + formData.mobileProvider.slice(1)} - {formData.mobileNumber}
-          </p>
-        )}
-        {formData.paymentMethod === 'bank' && formData.bankName && (
-          <p style={{ margin: 0, fontSize: '0.9rem', color: '#666' }}>
-            {formData.bankName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-          </p>
-        )}
       </div>
       
       <div style={{ marginBottom: '1rem' }}>
-        {formData.items.map(item => (
+        {cartItems.map(item => (
           <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <span style={{ color: 'var(--dark-brown)' }}>
               {item.name} x {item.quantity}
@@ -843,7 +654,7 @@ const Checkout = () => {
                       fontWeight: 'bold'
                     }}
                   >
-                    Place Order
+                    <i className="fas fa-check"></i> Place Order
                   </button>
                 </div>
               )}
@@ -863,7 +674,7 @@ const Checkout = () => {
                       fontWeight: 'bold'
                     }}
                   >
-                    Previous
+                    <i className="fas fa-arrow-left"></i> Previous
                   </button>
                 )}
                 {currentStep < 3 && (
@@ -881,7 +692,7 @@ const Checkout = () => {
                       marginLeft: 'auto'
                     }}
                   >
-                    Next
+                    Next <i className="fas fa-arrow-right"></i>
                   </button>
                 )}
               </div>

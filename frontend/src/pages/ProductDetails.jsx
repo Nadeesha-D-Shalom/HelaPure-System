@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductComparison from '../components/ProductComparison';
+import { getProductById } from '../data/products';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
@@ -22,71 +23,24 @@ const ProductDetails = () => {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 5, comment: '', name: '' });
 
-  // Enhanced mock product data
-  const product = {
-    id: parseInt(id),
-    name: 'Premium Organic Raw Honey',
-    brand: 'HelaPure',
-    price: 25.99,
-    originalPrice: 29.99,
-    discount: 13,
+  // Get product data from shared data source
+  const productData = getProductById(id);
+  console.log('Product ID:', id, 'Product Data:', productData);
+  
+  // Create product object with additional images for gallery
+  const product = productData ? {
+    ...productData,
+    image: productData.image, // Ensure image property exists for cart
     images: [
-      'https://via.placeholder.com/600x400/22c55e/ffffff?text=Organic+Honey+1',
-      'https://via.placeholder.com/600x400/16a34a/ffffff?text=Organic+Honey+2',
-      'https://via.placeholder.com/600x400/15803d/ffffff?text=Organic+Honey+3',
-      'https://via.placeholder.com/600x400/166534/ffffff?text=Organic+Honey+4'
+      productData.image,
+      productData.image, // Using same image for now, can be expanded later
+      productData.image,
+      productData.image
     ],
-    description: 'Pure, raw organic honey collected from local beekeepers in the pristine mountains of Sri Lanka. This premium honey is unfiltered and unpasteurized, retaining all its natural enzymes, vitamins, and health benefits. Perfect for daily consumption, cooking, and natural remedies.',
-    longDescription: `Our Premium Organic Raw Honey is sourced directly from certified organic beekeepers who follow sustainable practices. The honey is collected from wildflower nectar, giving it a unique flavor profile that reflects the diverse flora of Sri Lanka's highlands.
-
-This honey undergoes minimal processing to preserve its natural properties. It contains natural enzymes, antioxidants, and trace minerals that are beneficial for health. The honey has a golden color with a smooth, creamy texture and a rich, complex flavor.
-
-Perfect for:
-- Daily consumption for health benefits
-- Natural sweetener for tea and coffee
-- Baking and cooking
-- Natural remedies and home treatments
-- Gift giving
-
-Storage: Store in a cool, dry place away from direct sunlight.`,
-    features: [
-      '100% Organic Certified',
-      'Raw & Unfiltered',
-      'Locally Sourced',
-      'Rich in Antioxidants',
-      'Natural Enzymes Preserved',
-      'No Additives or Preservatives',
-      'Sustainable Beekeeping',
-      'Premium Quality'
-    ],
-    specifications: {
-      weight: '500g',
-      origin: 'Sri Lanka Highlands',
-      harvestDate: '2024',
-      shelfLife: '2 years',
-      storage: 'Cool, dry place',
-      certification: 'Organic Certified',
-      packaging: 'Glass Jar',
-      color: 'Golden Amber'
-    },
-    inStock: true,
-    stockCount: 15,
-    rating: 4.8,
-    reviewCount: 127,
-    category: 'Honey & Sweeteners',
-    tags: ['organic', 'raw', 'premium', 'local', 'healthy'],
-    seller: {
-      name: 'HelaPure Organic Store',
-      rating: 4.9,
-      location: 'Colombo, Sri Lanka',
-      verified: true
-    },
-    shipping: {
-      freeShipping: true,
-      estimatedDelivery: '2-3 business days',
-      returnPolicy: '30 days return policy'
-    }
-  };
+    reviewCount: productData.reviews
+  } : null;
+  
+  console.log('Final Product Object:', product);
 
   // Mock reviews data
   useEffect(() => {
@@ -123,15 +77,71 @@ Storage: Store in a cool, dry place away from direct sunlight.`,
   }, [id, addToRecentlyViewed]);
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
-    alert(`Added ${quantity} ${product.name}(s) to cart!`);
+    console.log('Add to cart clicked!');
+    console.log('Product:', product);
+    console.log('Quantity:', quantity);
+    
+    if (!product) {
+      console.error('Product is null or undefined');
+      alert('Product not found!');
+      return;
+    }
+    
+    if (!product.inStock) {
+      console.error('Product is out of stock');
+      alert('Product is out of stock!');
+      return;
+    }
+    
+    try {
+      console.log('Calling addToCart with:', product, quantity);
+      addToCart(product, quantity);
+      console.log('Successfully added to cart');
+      alert(`Added ${quantity} ${product.name}(s) to cart!`);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      alert('Error adding to cart. Please try again.');
+    }
   };
 
   const handleBuyNow = () => {
-    navigate('/checkout');
+    console.log('Buy now clicked!');
+    console.log('Product:', product);
+    console.log('Quantity:', quantity);
+    
+    if (!product) {
+      console.error('Product is null or undefined');
+      alert('Product not found!');
+      return;
+    }
+    
+    if (!product.inStock) {
+      console.error('Product is out of stock');
+      alert('Product is out of stock!');
+      return;
+    }
+    
+    try {
+      console.log('Calling addToCart for buy now with:', product, quantity);
+      addToCart(product, quantity);
+      console.log('Successfully added to cart, navigating to checkout');
+      
+      // Use setTimeout to ensure cart is updated before navigation
+      setTimeout(() => {
+        navigate('/checkout');
+      }, 100);
+    } catch (error) {
+      console.error('Error with buy now:', error);
+      alert('Error processing purchase. Please try again.');
+    }
   };
 
   const handleWishlistToggle = () => {
+    if (!product) {
+      console.error('Product is null or undefined');
+      return;
+    }
+    
     if (isInWishlist(product.id)) {
       removeFromWishlist(product.id);
     } else {
@@ -170,6 +180,12 @@ Storage: Store in a cool, dry place away from direct sunlight.`,
       <span key={i} className={`star ${i < rating ? 'filled' : ''}`}>⭐</span>
     ));
   };
+
+  // If product not found, redirect to home
+  if (!product) {
+    navigate('/');
+    return null;
+  }
 
   return (
     <>
@@ -230,12 +246,12 @@ Storage: Store in a cool, dry place away from direct sunlight.`,
                 </div>
 
                 <div className="product-price">
-                  <span className="current-price">${product.price.toFixed(2)}</span>
+                  <span className="current-price">Rs. {product.price.toFixed(2)}</span>
                   {product.originalPrice && (
-                    <span className="original-price">${product.originalPrice.toFixed(2)}</span>
+                    <span className="original-price">Rs. {product.originalPrice.toFixed(2)}</span>
                   )}
                   {product.discount > 0 && (
-                    <span className="savings">Save ${(product.originalPrice - product.price).toFixed(2)}</span>
+                    <span className="savings">Save Rs. {(product.originalPrice - product.price).toFixed(2)}</span>
                   )}
                 </div>
               </div>
@@ -278,24 +294,43 @@ Storage: Store in a cool, dry place away from direct sunlight.`,
               {/* Action Buttons */}
               <div className="action-buttons">
                 <button
+                  onClick={() => {
+                    console.log('Test button clicked!');
+                    alert('Test button works!');
+                  }}
+                  style={{ 
+                    padding: '10px', 
+                    margin: '5px', 
+                    backgroundColor: '#ff0000', 
+                    color: 'white', 
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Test Button
+                </button>
+                <button
                   onClick={handleAddToCart}
-                  disabled={!product.inStock}
+                  disabled={!product || !product.inStock}
                   className="add-to-cart-btn"
+                  style={{ cursor: (!product || !product.inStock) ? 'not-allowed' : 'pointer' }}
                 >
                   🛒 Add to Cart
                 </button>
                 <button
                   onClick={handleBuyNow}
-                  disabled={!product.inStock}
+                  disabled={!product || !product.inStock}
                   className="buy-now-btn"
+                  style={{ cursor: (!product || !product.inStock) ? 'not-allowed' : 'pointer' }}
                 >
                   Buy Now
                 </button>
                 <button
                   onClick={handleWishlistToggle}
-                  className={`wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                  className={`wishlist-btn ${product && isInWishlist(product.id) ? 'active' : ''}`}
+                  disabled={!product}
                 >
-                  {isInWishlist(product.id) ? '❤️' : '🤍'} Wishlist
+                  {product && isInWishlist(product.id) ? '❤️' : '🤍'} Wishlist
                 </button>
               </div>
 

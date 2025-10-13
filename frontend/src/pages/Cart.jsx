@@ -44,7 +44,9 @@ const Cart = () => {
         <div className="cart-page">
           <div className="cart-container">
             <div className="login-required">
-              <div className="login-required-icon">🔒</div>
+              <div className="login-required-icon">
+                <i className="fas fa-lock"></i>
+              </div>
               <h2>Login Required</h2>
               <p>You need to be logged in to view your cart and make purchases.</p>
               <div className="login-actions">
@@ -55,7 +57,7 @@ const Cart = () => {
                   Login
                 </button>
                 <button
-                  onClick={() => navigate('/register')}
+                  onClick={() => navigate('/login')}
                   className="register-btn"
                 >
                   Sign Up
@@ -76,7 +78,9 @@ const Cart = () => {
         <div className="cart-page">
           <div className="cart-container">
             <div className="empty-cart">
-              <div className="empty-cart-icon">🛒</div>
+              <div className="empty-cart-icon">
+                <i className="fas fa-shopping-cart"></i>
+              </div>
               <h2>Your Cart is Empty</h2>
               <p>Looks like you haven't added any items to your cart yet.</p>
               <button
@@ -120,9 +124,9 @@ const Cart = () => {
                     <h3 className="item-name">{item.name}</h3>
                     <p className="item-category">{item.category}</p>
                     <div className="item-price-info">
-                      <span className="current-price">${item.price.toFixed(2)}</span>
+                      <span className="current-price">Rs. {item.price.toFixed(2)}</span>
                       {item.originalPrice && item.originalPrice > item.price && (
-                        <span className="original-price">${item.originalPrice.toFixed(2)}</span>
+                        <span className="original-price">Rs. {item.originalPrice.toFixed(2)}</span>
                       )}
                       {item.discount && (
                         <span className="discount-badge">-{item.discount}%</span>
@@ -130,9 +134,13 @@ const Cart = () => {
                     </div>
                     <div className="stock-info">
                       {item.inStock ? (
-                        <span className="in-stock">✓ In Stock</span>
+                        <span className="in-stock">
+                          <i className="fas fa-check"></i> In Stock
+                        </span>
                       ) : (
-                        <span className="out-of-stock">✗ Out of Stock</span>
+                        <span className="out-of-stock">
+                          <i className="fas fa-times"></i> Out of Stock
+                        </span>
                       )}
                     </div>
                   </div>
@@ -145,7 +153,7 @@ const Cart = () => {
                         className="quantity-btn"
                         disabled={item.quantity <= 1}
                       >
-                        -
+                        <i className="fas fa-minus"></i>
                       </button>
                       <span className="quantity-display">{item.quantity}</span>
                       <button
@@ -153,20 +161,20 @@ const Cart = () => {
                         className="quantity-btn"
                         disabled={!item.inStock || item.quantity >= (item.stockCount || 99)}
                       >
-                        +
+                        <i className="fas fa-plus"></i>
                       </button>
                     </div>
                   </div>
 
                   <div className="item-total">
                     <div className="total-price">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      Rs. {(item.price * item.quantity).toFixed(2)}
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="remove-btn"
                     >
-                      Remove
+                      <i className="fas fa-trash"></i> Remove
                     </button>
                   </div>
                 </div>
@@ -179,7 +187,7 @@ const Cart = () => {
                 
                 <div className="summary-row">
                   <span>Subtotal ({getTotalItems()} items):</span>
-                  <span>${getTotalPrice().toFixed(2)}</span>
+                  <span>Rs. {getTotalPrice().toFixed(2)}</span>
                 </div>
                 
                 <div className="summary-row">
@@ -189,35 +197,41 @@ const Cart = () => {
                 
                 <div className="summary-row">
                   <span>Tax:</span>
-                  <span>${(getTotalPrice() * 0.15).toFixed(2)}</span>
+                  <span>Rs. {(getTotalPrice() * 0.15).toFixed(2)}</span>
                 </div>
                 
                 <div className="summary-divider"></div>
                 
                 <div className="summary-row total-row">
                   <span>Total:</span>
-                  <span>${(getTotalPrice() * 1.15).toFixed(2)}</span>
+                  <span>Rs. {(getTotalPrice() * 1.15).toFixed(2)}</span>
                 </div>
 
                 <button
                   onClick={handleCheckout}
                   className="checkout-btn"
                 >
-                  Proceed to Checkout
+                  <i className="fas fa-credit-card"></i> Proceed to Checkout
                 </button>
 
                 <button
                   onClick={handleContinueShopping}
                   className="continue-shopping-btn-secondary"
                 >
-                  Continue Shopping
+                  <i className="fas fa-arrow-left"></i> Continue Shopping
                 </button>
 
                 <div className="security-info">
                   <div className="security-badges">
-                    <span className="security-badge">🔒 Secure Checkout</span>
-                    <span className="security-badge">💳 Multiple Payment Options</span>
-                    <span className="security-badge">↩️ Easy Returns</span>
+                    <span className="security-badge">
+                      <i className="fas fa-lock"></i> Secure Checkout
+                    </span>
+                    <span className="security-badge">
+                      <i className="fas fa-credit-card"></i> Multiple Payment Options
+                    </span>
+                    <span className="security-badge">
+                      <i className="fas fa-undo"></i> Easy Returns
+                    </span>
                   </div>
                 </div>
               </div>

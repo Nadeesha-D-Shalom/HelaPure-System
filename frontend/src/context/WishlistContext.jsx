@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { dummyProducts } from '../data/products';
 
 const WishlistContext = createContext();
 
@@ -19,6 +20,13 @@ export const WishlistProvider = ({ children }) => {
     const savedWishlist = localStorage.getItem('helapure_wishlist');
     if (savedWishlist) {
       setWishlist(JSON.parse(savedWishlist));
+    } else {
+      // Add some sample data for demonstration using shared product data
+      const sampleWishlist = dummyProducts.slice(0, 5).map(product => ({
+        ...product,
+        addedAt: new Date(Date.now() - Math.random() * 10 * 24 * 60 * 60 * 1000).toISOString()
+      }));
+      setWishlist(sampleWishlist);
     }
 
     const savedRecentlyViewed = localStorage.getItem('helapure_recently_viewed');

@@ -60,15 +60,15 @@ const Header = () => {
     
     switch (user.role) {
       case 'admin':
-        return { to: '/dashboard/admin', label: 'Admin Dashboard', icon: '⚙️' };
+        return { to: '/dashboard/admin', label: 'Admin Dashboard', icon: 'fas fa-cog' };
       case 'seller':
-        return { to: '/dashboard/seller', label: 'Seller Dashboard', icon: '🏪' };
+        return { to: '/dashboard/seller', label: 'Seller Dashboard', icon: 'fas fa-store' };
       case 'delivery':
-        return { to: '/dashboard/delivery', label: 'Delivery Dashboard', icon: '🚚' };
+        return { to: '/dashboard/delivery', label: 'Delivery Dashboard', icon: 'fas fa-truck' };
       case 'buyer':
-        return { to: '/dashboard/buyer', label: 'My Orders', icon: '🛒' };
+        return { to: '/dashboard/buyer', label: 'My Orders', icon: 'fas fa-shopping-cart' };
       default:
-        return { to: '/dashboard/buyer', label: 'My Orders', icon: '🛒' };
+        return { to: '/dashboard/buyer', label: 'My Orders', icon: 'fas fa-shopping-cart' };
     }
   };
 
@@ -97,14 +97,81 @@ const Header = () => {
                 {showUserMenu && (
                   <div className="dropdown-menu user-menu">
                     <div className="user-info">
-                      <p className="user-name">{user.name}</p>
-                      <p className="user-role">{user.role}</p>
+                      <div className="user-avatar">
+                        <i className="fas fa-user"></i>
+                      </div>
+                      <div className="user-details">
+                        <p className="user-name">{user.name}</p>
+                        <p className="user-role">{user.role}</p>
+                      </div>
                     </div>
+                    
+                    <div className="menu-divider"></div>
+                    
+                    <Link
+                      to="/profile"
+                      className="dropdown-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      <i className="fas fa-user-cog"></i>
+                      <span>Manage My Account</span>
+                    </Link>
+                    
+                    <Link
+                      to="/my-orders"
+                      className="dropdown-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      <i className="fas fa-shopping-bag"></i>
+                      <span>My Orders</span>
+                    </Link>
+                    
+                    <Link
+                      to="/wishlist"
+                      className="dropdown-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      <i className="fas fa-heart"></i>
+                      <span>My Wishlist & Followed Stores</span>
+                    </Link>
+                    
+                    <Link
+                      to="/reviews"
+                      className="dropdown-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      <i className="fas fa-star"></i>
+                      <span>My Reviews</span>
+                    </Link>
+                    
+                    <Link
+                      to="/returns"
+                      className="dropdown-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      <i className="fas fa-undo"></i>
+                      <span>My Returns & Cancellations</span>
+                    </Link>
+                    
+                    {dashboardLink && (
+                      <Link
+                        to={dashboardLink.to}
+                        className="dropdown-item dashboard-link"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        <i className={dashboardLink.icon}></i>
+                        <span>{dashboardLink.label}</span>
+                      </Link>
+                    )}
+                    
+                    <div className="menu-divider"></div>
+                    
                     <button
                       onClick={handleLogout}
                       className="dropdown-item logout"
                     >
-                      🚪 Logout
+                      <i className="fas fa-sign-out-alt"></i>
+                      <span>Logout</span>
                     </button>
                   </div>
                 )}
@@ -178,7 +245,7 @@ const Header = () => {
                   type="submit"
                   className="search-button"
                 >
-                  🔍
+                  <i className="fas fa-search"></i>
                 </button>
               </div>
             </form>
@@ -186,7 +253,7 @@ const Header = () => {
 
           {/* Wishlist */}
           <Link to="/wishlist" className="wishlist-link">
-            ❤️
+            <i className="fas fa-heart"></i>
             <span className="wishlist-badge">{wishlistCount}</span>
           </Link>
 
@@ -195,7 +262,7 @@ const Header = () => {
 
           {/* Cart */}
           <Link to="/cart" className="cart-link">
-            🛒
+            <i className="fas fa-shopping-cart"></i>
             <span className="cart-badge">{getTotalItems()}</span>
           </Link>
 
@@ -204,7 +271,7 @@ const Header = () => {
             className="mobile-menu-btn"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            ☰
+            <i className="fas fa-bars"></i>
           </button>
         </div>
 
@@ -225,7 +292,7 @@ const Header = () => {
                   type="submit"
                   className="search-button"
                 >
-                  🔍
+                  <i className="fas fa-search"></i>
                 </button>
               </form>
             </div>
@@ -253,7 +320,7 @@ const Header = () => {
                 to="/cart" 
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                🛒 Cart
+                <i className="fas fa-shopping-cart"></i> Cart
               </Link>
       </nav>
           </div>

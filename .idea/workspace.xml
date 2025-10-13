@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b209d17a-9486-4f50-9402-112ac0b45d5d" name="Changes" comment="test 558" />
+    <list default="true" id="b209d17a-9486-4f50-9402-112ac0b45d5d" name="Changes" comment="test 886" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +123,7 @@
       <workItem from="1760170928357" duration="391000" />
       <workItem from="1760171341679" duration="28000" />
       <workItem from="1760171429531" duration="32000" />
-      <workItem from="1760330916253" duration="2811000" />
+      <workItem from="1760330916253" duration="3661000" />
     </task>
     <task id="LOCAL-00001" summary="work with the home page adding cart , login and etc.">
       <option name="closed" value="true" />
@@ -197,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760334055366</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="test 886">
+      <option name="closed" value="true" />
+      <created>1760334299170</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1760334299170</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +239,7 @@
     <MESSAGE value="new edit" />
     <MESSAGE value="test 6" />
     <MESSAGE value="test 558" />
-    <option name="LAST_COMMIT_MESSAGE" value="test 558" />
+    <MESSAGE value="test 886" />
+    <option name="LAST_COMMIT_MESSAGE" value="test 886" />
   </component>
 </project>

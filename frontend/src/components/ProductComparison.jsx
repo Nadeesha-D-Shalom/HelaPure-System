@@ -25,7 +25,7 @@ const ProductComparison = ({ isOpen, onClose, products = [] }) => {
   const getFeatureValue = (product, feature) => {
     switch (feature) {
       case 'price':
-        return `$${product.price}`;
+        return `Rs. ${product.price}`;
       case 'rating':
         return `${product.rating || 0}/5 ⭐`;
       case 'availability':

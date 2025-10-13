@@ -9,6 +9,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .product-card:hover {
@@ -21,43 +22,68 @@
   width: 100%;
   height: 200px;
   overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .product-card:hover .product-image {
   transform: scale(1.05);
 }
 
+.product-card:hover .product-image-container {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
 .discount-badge {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  background: #ef4444;
+  background: linear-gradient(135deg, #10B981, #059669);
   color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  padding: 0.375rem 0.875rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
   z-index: 2;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .product-badge {
   position: absolute;
-  top: 0.75rem;
+  bottom: 0.75rem;
   right: 0.75rem;
-  background: var(--deep-green);
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
   color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
   z-index: 2;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 .wishlist-btn {
@@ -75,7 +101,7 @@
   cursor: pointer;
   font-size: 1.2rem;
   transition: all 0.2s ease;
-  z-index: 3;
+  z-index: 10;
   opacity: 0;
   transform: scale(0.8);
 }
@@ -207,6 +233,8 @@
   justify-content: center;
   gap: 0.5rem;
   min-height: 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .add-to-cart-btn:hover:not(:disabled) {

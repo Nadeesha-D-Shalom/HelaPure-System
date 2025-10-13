@@ -106,37 +106,43 @@ const UserProfile = () => {
               className={`nav-item ${activeTab === 'profile' ? 'active' : ''}`}
               onClick={() => setActiveTab('profile')}
             >
-              👤 Personal Information
+              <i className="fas fa-user"></i>
+              Personal Information
             </button>
             <button 
               className={`nav-item ${activeTab === 'addresses' ? 'active' : ''}`}
               onClick={() => setActiveTab('addresses')}
             >
-              📍 Addresses
+              <i className="fas fa-map-marker-alt"></i>
+              Addresses
             </button>
             <button 
               className={`nav-item ${activeTab === 'orders' ? 'active' : ''}`}
               onClick={() => setActiveTab('orders')}
             >
-              📦 Order History
+              <i className="fas fa-shopping-bag"></i>
+              Order History
             </button>
             <button 
               className={`nav-item ${activeTab === 'wishlist' ? 'active' : ''}`}
               onClick={() => setActiveTab('wishlist')}
             >
-              ❤️ Wishlist
+              <i className="fas fa-heart"></i>
+              Wishlist
             </button>
             <button 
               className={`nav-item ${activeTab === 'notifications' ? 'active' : ''}`}
               onClick={() => setActiveTab('notifications')}
             >
-              🔔 Notifications
+              <i className="fas fa-bell"></i>
+              Notifications
             </button>
             <button 
               className={`nav-item ${activeTab === 'security' ? 'active' : ''}`}
               onClick={() => setActiveTab('security')}
             >
-              🔒 Security
+              <i className="fas fa-lock"></i>
+              Security
             </button>
           </div>
         </div>

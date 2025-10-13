@@ -14,6 +14,9 @@ import BecomeSeller from './pages/BecomeSeller';
 import HelpSupport from './pages/HelpSupport';
 import SearchResults from './pages/SearchResults';
 import UserProfile from './pages/UserProfile';
+import Reviews from './pages/Reviews';
+import Returns from './pages/Returns';
+import Wishlist from './pages/Wishlist';
 import ProtectedRoute from './components/ProtectedRoute';
 import { OrderProvider } from './context/OrderContext';
 import { AuthProvider } from './context/AuthContext';
@@ -59,6 +62,32 @@ function App() {
                   } 
                 />
                 <Route path="/my-orders" element={<MyOrders />} />
+                
+                {/* User Menu Pages */}
+                <Route 
+                  path="/reviews" 
+                  element={
+                    <ProtectedRoute>
+                      <Reviews />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/returns" 
+                  element={
+                    <ProtectedRoute>
+                      <Returns />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/wishlist" 
+                  element={
+                    <ProtectedRoute>
+                      <Wishlist />
+                    </ProtectedRoute>
+                  } 
+                />
                 
                 {/* Protected Dashboard Routes */}
                 <Route 

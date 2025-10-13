@@ -191,7 +191,7 @@ const OrderTracker = ({ order }) => {
                 {item.quantity}x {item.name}
               </span>
               <span style={{ color: 'var(--deep-green)', fontWeight: 'bold' }}>
-                ${(item.price * item.quantity).toFixed(2)}
+                Rs. {(item.price * item.quantity).toFixed(2)}
               </span>
             </div>
           ))}

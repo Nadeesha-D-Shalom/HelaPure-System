@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import AdvancedButton from '../components/AdvancedButton';
 import Modal from '../components/Modal';
 import DataTable from '../components/DataTable';
+import '../styles/SellerDashboard.css';
 
 const SellerDashboard = () => {
   const navigate = useNavigate();
@@ -183,9 +184,8 @@ const SellerDashboard = () => {
       </div>
     )},
     { key: 'status', label: 'Status', render: (value) => (
-      <span className={`px-2 py-1 rounded-full text-xs ${
-        value === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-      }`}>
+      <span className={`seller-status-badge ${value === 'active' ? 'active' : 'inactive'}`}>
+        <i className={`fas ${value === 'active' ? 'fa-check-circle' : 'fa-times-circle'}`}></i>
         {value === 'active' ? 'Active' : 'Out of Stock'}
       </span>
     )},
@@ -221,11 +221,8 @@ const SellerDashboard = () => {
     { key: 'category', label: 'Category', searchable: true },
     { key: 'description', label: 'Description', searchable: true },
     { key: 'status', label: 'Status', render: (value) => (
-      <span className={`px-2 py-1 rounded-full text-xs ${
-        value === 'approved' ? 'bg-green-100 text-green-800' :
-        value === 'rejected' ? 'bg-red-100 text-red-800' :
-        'bg-yellow-100 text-yellow-800'
-      }`}>
+      <span className={`seller-status-badge ${value}`}>
+        <i className={`fas ${value === 'approved' ? 'fa-check-circle' : value === 'rejected' ? 'fa-times-circle' : 'fa-clock'}`}></i>
         {value.charAt(0).toUpperCase() + value.slice(1)}
       </span>
     )},
@@ -243,54 +240,61 @@ const SellerDashboard = () => {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'products', label: 'Products', icon: '📦' },
-    { id: 'orders', label: 'Orders', icon: '🛒' },
-    { id: 'requests', label: 'Requests', icon: '📝' }
+    { id: 'overview', label: 'Overview', icon: 'fas fa-chart-bar' },
+    { id: 'products', label: 'Products', icon: 'fas fa-box' },
+    { id: 'orders', label: 'Orders', icon: 'fas fa-shopping-cart' },
+    { id: 'requests', label: 'Requests', icon: 'fas fa-clipboard-list' }
   ];
 
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-light-cream">
-        <div className="container mx-auto px-4 py-8">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
+      <div className="seller-dashboard">
+        {/* Header */}
+        <div className="seller-header">
+          <div className="seller-header-content">
             <div>
-              <h1 className="text-3xl font-bold text-deep-green">Seller Dashboard</h1>
-              <p className="text-gray-600 mt-2">Manage your products, orders, and requests</p>
+              <h1 className="seller-title">Seller Dashboard</h1>
+              <p className="seller-subtitle">Manage your products, orders, and requests</p>
             </div>
-            <div className="flex space-x-4">
-              <AdvancedButton
-                variant="outline"
-                onClick={() => setShowRequestModal(true)}
-                icon="📝"
-              >
-                Request New Product
-              </AdvancedButton>
-              <AdvancedButton
-                variant="primary"
-                onClick={() => setShowAddProductModal(true)}
-                icon="➕"
-              >
-                Add Product
-              </AdvancedButton>
+            <div className="seller-earnings">
+              <p className="text-sm opacity-90 mb-1">Total Revenue</p>
+              <p className="text-3xl font-bold">${stats.totalRevenue.toFixed(2)}</p>
             </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="seller-main-content">
+          {/* Action Buttons */}
+          <div className="flex space-x-4 mb-8">
+            <button
+              className="seller-btn seller-btn-outline"
+              onClick={() => setShowRequestModal(true)}
+            >
+              <i className="fas fa-clipboard-list"></i>
+              Request New Product
+            </button>
+            <button
+              className="seller-btn seller-btn-primary"
+              onClick={() => setShowAddProductModal(true)}
+            >
+              <i className="fas fa-plus"></i>
+              Add Product
+            </button>
           </div>
 
           {/* Tabs */}
-          <div className="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm">
+          <div className="seller-tabs">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center px-4 py-2 rounded-md transition-all ${
-                  activeTab === tab.id
-                    ? 'bg-deep-green text-white shadow-md'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`seller-tab ${activeTab === tab.id ? 'active' : ''}`}
               >
-                <span className="mr-2">{tab.icon}</span>
+                <span className="seller-tab-icon">
+                  <i className={tab.icon}></i>
+                </span>
                 {tab.label}
               </button>
             ))}
@@ -298,52 +302,44 @@ const SellerDashboard = () => {
 
           {/* Overview Tab */}
           {activeTab === 'overview' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center">
-                  <div className="p-3 bg-blue-100 rounded-full">
-                    <span className="text-2xl">📦</span>
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm text-gray-600">Total Products</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.totalProducts}</p>
-                  </div>
+            <div className="seller-stats-grid">
+              <div className="seller-stat-card">
+                <div className="seller-stat-icon products">
+                  <i className="fas fa-box"></i>
+                </div>
+                <div>
+                  <p className="seller-stat-number">{stats.totalProducts}</p>
+                  <p className="seller-stat-label">Total Products</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center">
-                  <div className="p-3 bg-green-100 rounded-full">
-                    <span className="text-2xl">✅</span>
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm text-gray-600">Active Products</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.activeProducts}</p>
-                  </div>
+              <div className="seller-stat-card">
+                <div className="seller-stat-icon orders">
+                  <i className="fas fa-check-circle"></i>
+                </div>
+                <div>
+                  <p className="seller-stat-number">{stats.activeProducts}</p>
+                  <p className="seller-stat-label">Active Products</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center">
-                  <div className="p-3 bg-yellow-100 rounded-full">
-                    <span className="text-2xl">🛒</span>
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm text-gray-600">Pending Orders</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.pendingOrders}</p>
-                  </div>
+              <div className="seller-stat-card">
+                <div className="seller-stat-icon pending">
+                  <i className="fas fa-shopping-cart"></i>
+                </div>
+                <div>
+                  <p className="seller-stat-number">{stats.pendingOrders}</p>
+                  <p className="seller-stat-label">Pending Orders</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center">
-                  <div className="p-3 bg-purple-100 rounded-full">
-                    <span className="text-2xl">💰</span>
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm text-gray-600">Total Revenue</p>
-                    <p className="text-2xl font-bold text-gray-900">${stats.totalRevenue.toFixed(2)}</p>
-                  </div>
+              <div className="seller-stat-card">
+                <div className="seller-stat-icon revenue">
+                  <i className="fas fa-dollar-sign"></i>
+                </div>
+                <div>
+                  <p className="seller-stat-number">${stats.totalRevenue.toFixed(2)}</p>
+                  <p className="seller-stat-label">Total Revenue</p>
                 </div>
               </div>
             </div>
@@ -351,10 +347,13 @@ const SellerDashboard = () => {
 
           {/* Products Tab */}
           {activeTab === 'products' && (
-            <div className="bg-white rounded-lg shadow-md">
-              <div className="p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">Product Management</h2>
-                <p className="text-gray-600 mt-1">Manage your product inventory and details</p>
+            <div className="seller-content">
+              <div className="seller-content-header">
+                <h2 className="seller-content-title">
+                  <i className="fas fa-box"></i>
+                  Product Management
+                </h2>
+                <p className="seller-content-subtitle">Manage your product inventory and details</p>
               </div>
               <DataTable
                 data={products}
@@ -369,10 +368,13 @@ const SellerDashboard = () => {
 
           {/* Orders Tab */}
           {activeTab === 'orders' && (
-            <div className="bg-white rounded-lg shadow-md">
-              <div className="p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">Order Management</h2>
-                <p className="text-gray-600 mt-1">View and manage customer orders</p>
+            <div className="seller-content">
+              <div className="seller-content-header">
+                <h2 className="seller-content-title">
+                  <i className="fas fa-shopping-cart"></i>
+                  Order Management
+                </h2>
+                <p className="seller-content-subtitle">View and manage customer orders</p>
               </div>
               <DataTable
                 data={orders}
@@ -387,10 +389,13 @@ const SellerDashboard = () => {
 
           {/* Requests Tab */}
           {activeTab === 'requests' && (
-            <div className="bg-white rounded-lg shadow-md">
-              <div className="p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">Product Requests</h2>
-                <p className="text-gray-600 mt-1">Track your product approval requests</p>
+            <div className="seller-content">
+              <div className="seller-content-header">
+                <h2 className="seller-content-title">
+                  <i className="fas fa-clipboard-list"></i>
+                  Product Requests
+                </h2>
+                <p className="seller-content-subtitle">Track your product approval requests</p>
               </div>
               <DataTable
                 data={requests}

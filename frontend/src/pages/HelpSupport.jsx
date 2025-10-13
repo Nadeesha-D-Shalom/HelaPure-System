@@ -30,7 +30,7 @@ const HelpSupport = () => {
       questions: [
         {
           question: 'How do I place an order?',
-          answer: 'Simply browse our products, add items to your cart, and proceed to checkout. You can pay using various methods including credit cards, bank transfers, or cash on delivery.'
+          answer: 'Simply browse our products, add items to your cart, and proceed to checkout. You can pay using credit/debit cards or cash on delivery.'
         },
         {
           question: 'What are your delivery times?',

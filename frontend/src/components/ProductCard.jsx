@@ -50,17 +50,27 @@ const ProductCard = ({ product }) => {
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={`star ${i < Math.floor(rating) ? 'filled' : ''}`}>⭐</span>
+      <span key={i} className={`star ${i < Math.floor(rating) ? 'filled' : ''}`}>
+        <i className="fas fa-star"></i>
+      </span>
     ));
+  };
+
+  const handleCardClick = (e) => {
+    // Don't navigate if clicking on buttons or interactive elements
+    if (e.target.closest('button') || e.target.closest('.wishlist-btn') || e.target.closest('.add-to-cart-btn')) {
+      return;
+    }
+    
+    // Navigate to product details
+    window.location.href = `/product/${product.id}`;
   };
 
   return (
     <>
-      <div className="product-card">
+      <div className="product-card" onClick={handleCardClick}>
         <div className="product-image-container">
-          <Link to={`/product/${product.id}`}>
-            <img src={product.image} alt={product.name} className="product-image" />
-          </Link>
+          <img src={product.image} alt={product.name} className="product-image" />
           
           {product.discount && product.discount > 0 && (
             <div className="discount-badge">
@@ -79,14 +89,12 @@ const ProductCard = ({ product }) => {
             onClick={handleWishlistToggle}
             title={isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
           >
-            {isInWishlist(product.id) ? '❤️' : '🤍'}
+            <i className={`fas fa-heart ${isInWishlist(product.id) ? 'filled' : ''}`}></i>
           </button>
         </div>
 
         <div className="product-info">
-          <Link to={`/product/${product.id}`} className="product-link">
-            <h3 className="product-name">{product.name}</h3>
-          </Link>
+          <h3 className="product-name">{product.name}</h3>
           
           <p className="product-description">
             {product.description}
@@ -119,13 +127,19 @@ const ProductCard = ({ product }) => {
               >
                 {isAdding ? (
                   <>
-                    <span className="loading-spinner"></span>
+                    <i className="fas fa-spinner fa-spin"></i>
                     Adding...
                   </>
                 ) : isInCart(product.id) ? (
-                  '✓ In Cart'
+                  <>
+                    <i className="fas fa-check"></i>
+                    In Cart
+                  </>
                 ) : (
-                  '🛒 Add to Cart'
+                  <>
+                    <i className="fas fa-shopping-cart"></i>
+                    Add to Cart
+                  </>
                 )}
               </button>
             </div>
@@ -170,7 +184,7 @@ const ProductCard = ({ product }) => {
                   Login
                 </Link>
                 <Link 
-                  to="/register" 
+                  to="/login" 
                   className="register-btn"
                   onClick={() => setShowLoginPrompt(false)}
                 >
