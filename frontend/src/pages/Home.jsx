@@ -184,29 +184,30 @@ const dummyProducts = [
   }
 ];
 
-const bannerImages = [
-  {
-    id: 1,
-    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzJFOEI1NyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5PcmdhbmljIFByb2R1Y3RzIFNhbGU8L3RleHQ+PC9zdmc+',
-    title: 'Organic Products Sale',
-    subtitle: 'Up to 50% off on all organic items',
-    buttonText: 'Shop Now'
-  },
-  {
-    id: 2,
-    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzg0NDUxMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TcGljZXMgQ29sbGVjdGlvbjwvdGV4dD48L3N2Zz4=',
-    title: 'Premium Spices Collection',
-    subtitle: 'Authentic Sri Lankan spices at best prices',
-    buttonText: 'Explore'
-  },
-  {
-    id: 3,
-    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzIyOEIyMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5GcmVzaCBWZWdldGFibGVzPC90ZXh0Pjwvc3ZnPg==',
-    title: 'Fresh Vegetables',
-    subtitle: 'Farm-fresh vegetables delivered daily',
-    buttonText: 'Order Now'
-  }
-];
+// Banner images for future carousel implementation
+// const bannerImages = [
+//   {
+//     id: 1,
+//     image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzJFOEI1NyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5PcmdhbmljIFByb2R1Y3RzIFNhbGU8L3RleHQ+PC9zdmc+',
+//     title: 'Organic Products Sale',
+//     subtitle: 'Up to 50% off on all organic items',
+//     buttonText: 'Shop Now'
+//   },
+//   {
+//     id: 2,
+//     image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzg0NDUxMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TcGljZXMgQ29sbGVjdGlvbjwvdGV4dD48L3N2Zz4=',
+//     title: 'Premium Spices Collection',
+//     subtitle: 'Authentic Sri Lankan spices at best prices',
+//     buttonText: 'Explore'
+//   },
+//   {
+//     id: 3,
+//     image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzIyOEIyMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5GcmVzaCBWZWdldGFibGVzPC90ZXh0Pjwvc3ZnPg==',
+//     title: 'Fresh Vegetables',
+//     subtitle: 'Farm-fresh vegetables delivered daily',
+//     buttonText: 'Order Now'
+//   }
+// ];
 
 const categories = [
   { id: 'fruits', name: 'Fresh Fruits', icon: '🍎', color: 'bg-red-100 text-red-600' },

@@ -5,238 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b209d17a-9486-4f50-9402-112ac0b45d5d" name="Changes" comment="work with the home page adding cart , login and etc.">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/Praposal.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/hela_pure_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/AdvancedButton.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/CategoryNavigation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/CategoryNavigation.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/DataTable.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/LiveChat.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/LiveChat.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/LoginModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/LoginModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Modal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Newsletter.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Newsletter.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/NotificationCenter.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/NotificationCenter.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ProductComparison.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ProductComparison.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ProtectedRoute.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/SearchBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UserManagement.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/AuthContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/CartContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/NotificationContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/OrderContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/WishlistContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/BecomeSeller.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Cart.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/DeliveryDashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/HelpSupport.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/MyOrders.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ProductDetails.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/SearchResults.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/SellerDashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/UserProfile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/UserProfile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/styles/utilities.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/cookie/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/cookie/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/cookie/dist/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/cookie/dist/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/cookie/dist/index.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/cookie/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-client.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-client.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-profiling.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-profiling.profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server-legacy.browser.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server-legacy.browser.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server-legacy.node.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.browser.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.browser.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.bun.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.bun.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.edge.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.edge.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.node.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-server.node.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-test-utils.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom-test-utils.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom.react-server.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom.react-server.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/client.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/profiling.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/react-dom.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.browser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.bun.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.edge.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.node.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/static.browser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/static.edge.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/static.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/static.node.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/static.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/test-utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/dist/index.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/dist/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/dist/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/dist/index.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router-dom/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/browser-z32v5KVN.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/chunk-72XNTZCV.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/chunk-DI2QHYMJ.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/chunk-OIYGIGL5.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/chunk-WY5IRSCW.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/context-DSyS5mLj.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/dom-export.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/dom-export.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/dom-export.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/dom-export.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server-client-BIz4AUNd.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server-client-BbRcBjrA.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server-client.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server-client.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server-client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server-client.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index-react-server.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/index.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/lib/types/internal.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/lib/types/internal.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/lib/types/internal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/lib/types/internal.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/register-C34pU-in.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/register-CI4bTprK.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/route-data-DZQOUSqV.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/development/routeModules-D5iJ6JYT.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/browser-z32v5KVN.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/chunk-3TADTUL4.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/chunk-4E5LHRQP.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/chunk-FR6HSPLK.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/chunk-WNLQ53P5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/context-DSyS5mLj.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/dom-export.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/dom-export.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/dom-export.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/dom-export.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server-client-BIz4AUNd.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server-client-BbRcBjrA.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server-client.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server-client.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server-client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server-client.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index-react-server.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/index.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/lib/types/internal.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/lib/types/internal.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/lib/types/internal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/lib/types/internal.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/register-C34pU-in.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/register-CI4bTprK.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/route-data-DZQOUSqV.d.mts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/dist/production/routeModules-D5iJ6JYT.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-router/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-compiler-runtime.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-compiler-runtime.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-compiler-runtime.profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-dev-runtime.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-dev-runtime.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-dev-runtime.profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-dev-runtime.react-server.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-dev-runtime.react-server.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-runtime.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-runtime.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-runtime.profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-runtime.react-server.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react-jsx-runtime.react-server.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react.react-server.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react.react-server.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/compiler-runtime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/jsx-dev-runtime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/jsx-dev-runtime.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/jsx-runtime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/jsx-runtime.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/react.react-server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-unstable_mock.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-unstable_mock.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-unstable_post_task.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-unstable_post_task.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler.native.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler.native.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler.production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/index.native.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/unstable_mock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/unstable_post_task.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/set-cookie-parser/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/set-cookie-parser/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/set-cookie-parser/lib/set-cookie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/set-cookie-parser/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OrderTracker.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OrderTracker.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProductCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ProductCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ProductDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ProductDetails.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/variables.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,6 +81,9 @@
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b209d17a-9486-4f50-9402-112ac0b45d5d" name="Changes" comment="Created React files, and add them to the branches." />
@@ -326,11 +98,33 @@
       <workItem from="1759980891988" duration="1210000" />
       <workItem from="1760001031261" duration="18000" />
       <workItem from="1760170928357" duration="391000" />
+      <workItem from="1760171341679" duration="28000" />
+      <workItem from="1760171429531" duration="32000" />
     </task>
+    <task id="LOCAL-00001" summary="work with the home page adding cart , login and etc.">
+      <option name="closed" value="true" />
+      <created>1760171364301</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760171364301</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="work with the home page adding cart , login and etc." />
