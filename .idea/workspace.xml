@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b209d17a-9486-4f50-9402-112ac0b45d5d" name="Changes" comment="test 6" />
+    <list default="true" id="b209d17a-9486-4f50-9402-112ac0b45d5d" name="Changes" comment="test 558" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +34,7 @@
 }]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/ChamiduPrabodya/HelaPure-System.git",
+    "url": "https://github.com/Nadeesha-D-Shalom/HelaPure-System.git",
     "accountId": "6c61a332-b498-4ffe-aa45-502b5338ba27"
   },
   "recentNewPullRequestHead": {
@@ -76,6 +76,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
     "ts.external.directory.path": "C:\\Users\\CHAMIDU\\OneDrive\\Desktop\\HelaPure\\HelaPure-System\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -122,7 +123,7 @@
       <workItem from="1760170928357" duration="391000" />
       <workItem from="1760171341679" duration="28000" />
       <workItem from="1760171429531" duration="32000" />
-      <workItem from="1760330916253" duration="2186000" />
+      <workItem from="1760330916253" duration="2811000" />
     </task>
     <task id="LOCAL-00001" summary="work with the home page adding cart , login and etc.">
       <option name="closed" value="true" />
@@ -180,7 +181,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760333132003</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="test 6">
+      <option name="closed" value="true" />
+      <created>1760333585179</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1760333585179</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test 558">
+      <option name="closed" value="true" />
+      <created>1760334055366</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760334055366</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +230,7 @@
     <MESSAGE value="work with the home page adding cart , login and etc." />
     <MESSAGE value="new edit" />
     <MESSAGE value="test 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="test 6" />
+    <MESSAGE value="test 558" />
+    <option name="LAST_COMMIT_MESSAGE" value="test 558" />
   </component>
 </project>
